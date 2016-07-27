@@ -22,6 +22,7 @@
 
 	include('credentials.php');
 
+
 	$output = array("ok" => false);
 	$timestamp = time();
 	$firstName = substr($_POST['firstName'],0,64);
@@ -29,12 +30,21 @@
 	$email = substr($_POST['email'],0,64);
 	$category = substr($_POST['category'],0,128);
 	$caption1 = substr($_POST['caption1'],0,1024);
-	$caption2 = substr($_POST['caption2'],0,1024);
-	$caption3 = substr($_POST['caption3'],0,1024);
 	$image1 = $_FILES['image1'];
-	$image2 = $_FILES['image2'];
-	$image3 = $_FILES['image3'];
 
+	if (isset($_POST['caption2'])){
+	}
+
+	if (isset($_POST['caption3'])){
+	}
+
+	if (isset($_POST['image2'])){
+
+	}
+
+	if (isset($_POST['image3'])){
+	}
+	
 
 	if ($image1['error'] != 0){
 		output($image1['error'], false);
@@ -80,50 +90,54 @@
 
 	};
 
+	$caption2 = substr($_POST['caption2'],0,1024);
+	$image2 = $_FILES['image2'];
 	if ($image2['error'] != 0){
 	    output($image2['error'], false);
 	} else {
 	    /***Get image info**/
-	    $cleanName2 = trim($image2['name']);
-	    if (strlen($cleanName2) > 10){
-	    	$cleanName2 = substr($cleanName2, 0, 9);
-	    }
-	    // $string2 = filter_var($cleanName2, FILTER_SANITIZE_STRING);
-	    $imageInfo2 = pathinfo($image2['name']);
-	    $filename2 = $timestamp . "." . strtolower($cleanName2) . "." . strtolower($imageInfo2['extension']);
-	    // $filename2 = $timestamp . "." . strtolower($cleanName2) . "." . strtolower($imageInfo2['extension']);
+		$cleanName2 = trim($image2['name']);
+		if (strlen($cleanName2) > 10){
+			$cleanName2 = substr($cleanName2, 0, 9);
+		}
+		// $string2 = filter_var($cleanName2, FILTER_SANITIZE_STRING);
+		$imageInfo2 = pathinfo($image2['name']);
+		$filename2 = $timestamp . "." . strtolower($cleanName2) . "." . strtolower($imageInfo2['extension']);
+		// $filename2 = $timestamp . "." . strtolower($cleanName2) . "." . strtolower($imageInfo2['extension']);
 
 
-	    /***Save entry to the database***/
+		/***Save entry to the database***/
 
-	    //Connect to mysql DB
+		//Connect to mysql DB
 
-	    // $db = mysql_connect($dbhost, $dbuser, $dbpass);
+		// $db = mysql_connect($dbhost, $dbuser, $dbpass);
 
 
-	    $db2 = new PDO("mysql:host={$dbhost};dbname={$dbname};charset=utf8", $dbuser, $dbpass, array(PDO::ATTR_EMULATE_PREPARES => false, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+		$db2 = new PDO("mysql:host={$dbhost};dbname={$dbname};charset=utf8", $dbuser, $dbpass, array(PDO::ATTR_EMULATE_PREPARES => false, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 
-	    //Insert new record
-	    $stmt2 = $db2->prepare("INSERT INTO {$dbtable}(first_name,last_name,email,caption,category,file_name) VALUES(:first_name,:last_name,:email,:caption,:category,:file_name)");
-	    $stmt2->execute(array(':first_name' => $_POST['firstName'], ':last_name' => $_POST['lastName'], ':email' => $_POST['email'], ':caption' => $_POST['caption2'], ':category' => $_POST['category'], ':file_name' => $filename2));
-	    $affected_rows2 = $stmt2->rowCount();
+		//Insert new record
+		$stmt2 = $db2->prepare("INSERT INTO {$dbtable}(first_name,last_name,email,caption,category,file_name) VALUES(:first_name,:last_name,:email,:caption,:category,:file_name)");
+		$stmt2->execute(array(':first_name' => $_POST['firstName'], ':last_name' => $_POST['lastName'], ':email' => $_POST['email'], ':caption' => $_POST['caption2'], ':category' => $_POST['category'], ':file_name' => $filename2));
+		$affected_rows2 = $stmt2->rowCount();
 
-	    // if ($affected_rows2 == 1){
-	        // Move the uploaded file into place
-	        
-	        move_uploaded_file($image2['tmp_name'], 'images/'. $filename2);
+		// if ($affected_rows2 == 1){
+		    // Move the uploaded file into place
+		    
+		    move_uploaded_file($image2['tmp_name'], 'images/'. $filename2);
 
-	        //Create a thumbnail
-	        // include('smart_resize.php');
-	        smart_resize_image('images/'. $filename2, null, 150 , 150 , true , 'images/th_' . $filename2, false, false, 80);
-	        // output("Success! We received your submission.", true);
-	    // }
-	    // else{
-	    //     output("Could not save information", false);
-	    // }
+		    //Create a thumbnail
+		    // include('smart_resize.php');
+		    smart_resize_image('images/'. $filename2, null, 150 , 150 , true , 'images/th_' . $filename2, false, false, 80);
+		    // output("Success! We received your submission.", true);
+		// }
+		// else{
+		//     output("Could not save information", false);
+		// }    
 
 	};
-
+	
+	$caption3 = substr($_POST['caption3'],0,1024);
+	$image3 = $_FILES['image3'];
 	if ($image3['error'] != 0){
 	    output($image3['error'], false);
 	} else {
@@ -185,16 +199,20 @@
 	function customError($errno, $errmsg){
 		if (DEBUG){
 			die( '{"ok": false, "message" : "' . $errmsg . '"}');
+			echo $errmsg;
 		}else{
 			die( '{"ok": false, "message" : "error #' . $errno . '"}');
+			echo $errno;
 		}
 	}
 
 	function customException($err){
 		if (DEBUG){
 			die( '{"ok": false, "message" : "'. $err .'"}');
+			echo $err;
 		}else{
 			die( '{"ok": false, "message" : "unhandled exception"}');
+			echo "unhandled exception";
 		}
 	}
 

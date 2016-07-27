@@ -659,17 +659,27 @@ input[type="file"] {
                         return;
                     }
                     var payload = new FormData();
+                    console.log($('#imgUpload2')[0].files[0]);
+                    if ($('#imgUpload2')[0].files[0] == undefined) {
+                      console.log('is blank')
+                    } else {
+                      payload.append('image2', $('#imgUpload2')[0].files[0]);
+                      payload.append('caption2', $("textarea[name='caption2']").val());
+                    }
+
+                    if ($('#imgUpload3')[0].files[0] == undefined) {
+                      console.log('is blank')
+                    } else {
+                      payload.append('image3', $('#imgUpload3')[0].files[0]);
+                      payload.append('caption3', $("textarea[name='caption3']").val());
+                    }
                     payload.append('ajaxEnabled', true);
                     payload.append('firstName', $("input[name='firstName']").val());
                     payload.append('lastName', $("input[name='lastName']").val());
                     payload.append('email', $("input[name='email']").val());
                     payload.append('category', $("select[name='category']").val());
                     payload.append('caption1', $("textarea[name='caption1']").val());
-                    payload.append('caption2', $("textarea[name='caption2']").val());
-                    payload.append('caption3', $("textarea[name='caption3']").val());
                     payload.append('image1', $('#imgUpload1')[0].files[0]);
-                    payload.append('image2', $('#imgUpload2')[0].files[0]);
-                    payload.append('image3', $('#imgUpload3')[0].files[0]);
                     console.log(payload.get('image1'));
                     console.log(payload.get('image2'));
                     console.log(payload.get('image3'));
@@ -685,6 +695,7 @@ input[type="file"] {
                         contentType: false,
                         context: this,
                         success: function(response) {
+                            console.log(response);
                             if (response.ok === true) {
                                 showBanner('Success! We received your submission.', false);
                                 // showBanner();
