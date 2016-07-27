@@ -17,10 +17,10 @@
 	header('Content-Type: application/json');
 	set_error_handler('customError');
 	set_exception_handler('customException');
-	define("DEBUG", false);
+	define("DEBUG", true);
 	$_POST  = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
-	include 'credentials.php'
+	include('credentials.php');
 
 	$output = array("ok" => false);
 	$timestamp = time();

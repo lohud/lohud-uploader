@@ -2,7 +2,7 @@
 
 ini_set('display_errors', 1);
 
-  include '/credentials.php'
+  include('../credentials.php');
 
 
   //Connect to mysql DB
