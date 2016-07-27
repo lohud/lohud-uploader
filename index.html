@@ -1,0 +1,731 @@
+<!Doctype HTML>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<meta name="title" content="" >
+	<meta name="description" content="">
+    
+	<meta property="og:title" content="">
+    <meta property="og:description" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <meta property="og:type" content="website">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	
+	<!--Jquery conditional loader-->
+	<!--[if lt IE 9]>
+	    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+	<![endif]-->
+	<!--[if gte IE 9]><!-->
+	    <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+	<!--<![endif]-->
+	
+	<!--
+	JQuery UI
+	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+	<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css" />
+	-->
+
+	<!--
+	Fontawesome
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+	-->
+
+	<!--
+	Bootstrap
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	-->
+
+
+	<!--
+	Angular
+	<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js'></script>
+	-->
+	
+	<style>
+@import url(http://fonts.googleapis.com/css?family=Lato:100,300,400,700);
+
+
+
+/*! normalize.css v3.0.2 | MIT License | git.io/normalize */
+
+html {
+  font-family: 'Lato', sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%
+}
+
+body {
+  margin: 0
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section,
+summary {
+  display: block
+}
+
+audio,
+canvas,
+progress,
+video {
+  display: inline-block;
+  vertical-align: baseline
+}
+
+audio:not([controls]) {
+  display: none;
+  height: 0
+}
+
+[hidden],
+template {
+  display: none
+}
+
+a {
+  background-color: transparent
+}
+
+a:active,
+a:hover {
+  outline: 0
+}
+
+abbr[title] {
+  border-bottom: 1px dotted
+}
+
+b,
+strong {
+  font-weight: 700
+}
+
+dfn {
+  font-style: italic
+}
+
+h1 {
+  font-size: 2em;
+  margin: .67em 0
+}
+
+mark {
+  background: #ff0;
+  color: #000
+}
+
+small {
+  font-size: 80%
+}
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline
+}
+
+sup {
+  top: -.5em
+}
+
+sub {
+  bottom: -.25em
+}
+
+img {
+  border: 0
+}
+
+svg:not(:root) {
+  overflow: hidden
+}
+
+figure {
+  margin: 1em 40px
+}
+
+hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0
+}
+
+pre {
+  overflow: auto
+}
+
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, monospace;
+  font-size: 1em
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  color: inherit;
+  font: inherit;
+  margin: 0
+}
+
+button {
+  overflow: visible
+}
+
+button,
+select {
+  text-transform: none
+}
+
+button,
+html input[type=button],
+input[type=reset],
+input[type=submit] {
+  -webkit-appearance: button;
+  cursor: pointer
+}
+
+button[disabled],
+html input[disabled] {
+  cursor: default
+}
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0
+}
+
+input {
+  line-height: normal
+}
+
+input[type=checkbox],
+input[type=radio] {
+  box-sizing: border-box;
+  padding: 0
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  height: auto
+}
+
+input[type=search] {
+  -webkit-appearance: textfield;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box
+}
+
+input[type=search]::-webkit-search-cancel-button,
+input[type=search]::-webkit-search-decoration {
+  -webkit-appearance: none
+}
+
+fieldset {
+  border: 1px solid silver;
+  margin: 0 2px;
+  padding: .35em .625em .75em
+}
+
+legend {
+  border: 0;
+  padding: 0
+}
+
+textarea {
+  overflow: auto
+}
+
+optgroup {
+  font-weight: 700
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0
+}
+
+td,
+th {
+  padding: 0
+}
+
+
+/*Main CSS*/
+
+body {
+  margin: 0;
+  padding: 0;
+  background: url(../img/noise_f6f6f6.png) top left #F6F6F6;
+  font-family: Arial, sans-serif;
+  font-size: 1em;
+  line-height: 1.4;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#main-container {
+  max-width: 920px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 20px;
+}
+
+.iframe-chrome {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  border: none;
+}
+
+#iframe-header {
+  height: 40px;
+}
+
+#iframe-footer {
+  min-height: 150px;
+}
+
+#main-container {
+  max-width: 920px;
+  min-height: 300px;
+  padding: 20px;
+  margin: 50px auto 0px auto;
+  ;
+  background-color: #fff;
+}
+
+h1 {
+  margin-top: 0;
+}
+
+.formsubmission {
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  margin-top: 30px;
+}
+
+.formelement {
+  display: inline-block;
+  width: 48%;
+  min-width: 150px;
+  margin: 5px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+.formelement.fullwidth {
+  width: 100%;
+}
+
+.formelement > textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  padding: 10px;
+  font-size: 1.1em;
+  font-family: 'Lato', arial, sans-serif;
+  font-weight: 300;
+  resize: none;
+  min-height: 200px;
+}
+
+.formelement > input {
+  border: none;
+  border-bottom: 1px solid #ccc;
+  width: 100%;
+  padding: 5px 10px;
+  box-sizing: border-box;
+  font-size: 1.1em;
+  color: #333;
+  font-family: 'Lato', arial, sans-serif;
+  font-weight: 300;
+  transition: all .2s linear;
+}
+
+.formelement > select {
+  border: 1px solid #CCC;
+  border-radius: 0;
+  width: 100%;
+  background-color: #FFF;
+}
+
+.formelement > input:focus {
+  outline: none;
+  border-bottom: 1px solid blue;
+}
+
+::-webkit-input-placeholder {
+  font-weight: 100;
+}
+
+::-moz-placeholder {
+  font-weight: 100;
+}
+
+:-ms-input-placeholder {
+  font-weight: 100;
+}
+
+input:-moz-placeholder {
+  font-weight: 100;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: 1px solid #aaa;
+  font-size: 16px;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
+  transition: background-color .2s linear;
+  outline: none;
+}
+
+.btn:hover {
+  background-color: #ddd;
+}
+
+#form-banner {
+  font-weight: 400;
+  font-family: 'Lato', sans-serif;
+  font-size: 20px;
+  display: inline-block;
+  margin-left: 20px;
+  display: none;
+}
+
+.required {
+  background-color: rgb(247, 149, 149);
+  background-color: rgba(247, 149, 149, 0.2)!important;
+}
+
+@media screen and (max-width: 665px) {
+  .formelement {
+    width: 100%;
+  }
+}
+
+.center-text {
+  text-align: center;
+}
+
+input[type="file"] {
+  border: none;
+  display:inline-block;
+}
+
+#imgPreview1 {
+  max-width: 100%;
+  max-height: 250px;
+}
+
+#imgPreview2 {
+  max-width: 100%;
+  max-height: 250px;
+}
+
+#imgPreview3 {
+  max-width: 100%;
+  max-height: 250px;
+}
+
+	</style>
+
+</head>
+<body>
+
+    <div id="header-container">
+        <iframe class="iframe-chrome" id="iframe-header" name="iframe-header" scrolling="no" src="http://www.lohud.com/services/cobrand/header/"></iframe>
+    </div>
+
+    <!--**********Content starts**********-->
+    <div id="main-container">
+        <h1>Share Your Photos</h1>
+        <div id="content-container">
+            <p>We’d love to see your pictures. Start uploading your photos. We’ll select some for our gallery online at <a href="http://lohud.com/somethinghere">http://lohud.com/somethinghere</a> plus we’ll select several each week to be printed in XYZ. By submitting photos through our uploader, you are agreeing to <b>insert link to exhaustive rights thingy here</b></p>
+            <p>Maximum image size is 2MB</p>
+            <form action="image-uploader.php" class="formsubmission" enctype="multipart/form-data" id="commentsform" method="post" name="commentsform">
+                <div class="formelement">
+                    <input maxlength="32" name="firstName" placeholder="First Name" required="" tabindex="1" type="text">
+                </div>
+                <div class="formelement">
+                    <input maxlength="32" name="lastName" placeholder="Last Name" required="" tabindex="2" type="text">
+                </div>
+                <div class="formelement">
+                    <input maxlength="64" name="email" placeholder="E-mail" required="" tabindex="3" type="email">
+                </div>
+                <div id="image1">
+                  <div class="formelement fullwidth center-text">
+                      <!-- <input accept="image/*" id="imgUpload1" name="image1" required="" type="file"> -->
+                      <input accept="image/*" id="imgUpload1" name="image1" type="file">
+                  </div>
+                  <div class="formelement fullwidth center-text"><img alt="your image" id="imgPreview1" src="image-preview-placeholder.png"></div>
+                  <div class="formelement fullwidth">
+                      <!-- <select name="category" required=""> -->
+                      <select name="category" >
+                          <option>
+                              Select a Category
+                          </option>
+                          <option selected="selected">
+                              Vacation Photos
+                          </option>
+                          <option>
+                              Daily commute
+                          </option>
+                          <option>
+                              Other stuff
+                          </option>
+                      </select>
+                  </div>
+                  <div class="formelement fullwidth">
+                      <!-- <textarea id="caption1" name="caption1" placeholder="Caption" required="" tabindex="10"></textarea> -->
+                      <textarea id="caption1" name="caption1" placeholder="Caption" tabindex="10"></textarea>
+                  </div>
+                </div>
+                <div id="image2">
+                  <div class="formelement fullwidth center-text">
+                      <input accept="image/*" id="imgUpload2" name="image2" type="file">
+                  </div>
+                  <div class="formelement fullwidth center-text"><img alt="your image" id="imgPreview2" src="image-preview-placeholder.png"></div>
+                  <div class="formelement fullwidth">
+                      <select name="category" >
+                          <option>
+                              Select a Category
+                          </option>
+                          <option selected="selected">
+                              Vacation Photos
+                          </option>
+                          <option>
+                              Daily commute
+                          </option>
+                          <option>
+                              Other stuff
+                          </option>
+                      </select>
+                  </div>
+                  <div class="formelement fullwidth">
+                      <textarea id="caption2" name="caption2" placeholder="Caption" tabindex="10"></textarea>
+                  </div>
+                </div>
+                <div id="image3">
+                  <div class="formelement fullwidth center-text">
+                      <input accept="image/*" id="imgUpload3" name="image3" type="file">
+                  </div>
+                  <div class="formelement fullwidth center-text"><img alt="your image" id="imgPreview3" src="image-preview-placeholder.png"></div>
+                  <div class="formelement fullwidth">
+                      <select name="category" >
+                          <option>
+                              Select a Category
+                          </option>
+                          <option selected="selected">
+                              Vacation Photos
+                          </option>
+                          <option>
+                              Daily commute
+                          </option>
+                          <option>
+                              Other stuff
+                          </option>
+                      </select>
+                  </div>
+                  <div class="formelement fullwidth">
+                      <textarea id="caption3" name="caption3" placeholder="Caption"  tabindex="10"></textarea>
+                  </div>
+                </div>
+                <div class="formelement fullwidth">
+                    <button class="btn" id="sendform" tabindex="11">Submit</button>
+                    <div id="form-banner"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!--**********Content ends**********-->
+    <div id="footer-container">
+        <iframe class="iframe-chrome" id="iframe-footer" name="iframe-footer" scrolling="no" src="http://www.lohud.com/services/cobrand/footer/"></iframe>
+    </div>
+
+
+	<script>
+
+        (function() {
+
+            /***** SETUP *****/
+
+            //Check for modern functionality
+            var fileReaderExists = true,
+                formDataExists = true;
+            if (window.FileReader === undefined) {
+                fileReaderExists = false;
+                $('#imgPreview1').hide();
+                $('#imgPreview2').hide();
+                $('#imgPreview3').hide();
+            }
+            if (window.FormData === undefined) {
+                formDataExists = false;
+                
+            }
+
+
+            /***** EVENT HANDLERS *****/
+
+            //Provide a preview of the image
+            $("#imgUpload1").change(function() {
+                if (fileReaderExists) {
+                    if (this.files && this.files[0]) {
+                        var reader = new FileReader();
+                        reader.onload = function(e) {
+                            $('#imgPreview1').attr('src', e.target.result);
+                        }
+                        reader.readAsDataURL(this.files[0]);
+                    }
+                }
+            });
+
+            $("#imgUpload2").change(function() {
+                if (fileReaderExists) {
+                    if (this.files && this.files[0]) {
+                        var reader = new FileReader();
+                        reader.onload = function(e) {
+                            $('#imgPreview2').attr('src', e.target.result);
+                        }
+                        reader.readAsDataURL(this.files[0]);
+                    }
+                }
+            });
+
+            $("#imgUpload3").change(function() {
+                if (fileReaderExists) {
+                    if (this.files && this.files[0]) {
+                        var reader = new FileReader();
+                        reader.onload = function(e) {
+                            $('#imgPreview3').attr('src', e.target.result);
+                        }
+                        reader.readAsDataURL(this.files[0]);
+                    }
+                }
+            });
+
+            //Send the form
+            $('#sendform').click(function(e) {
+                //If client supports HTML5 FormData, use the ajax uploader
+                if (formDataExists) {
+                    e.preventDefault();
+
+                    //Show uploading status
+                    showBanner("Uploading...", false);
+
+                    //Disable form temporarily
+                    $('#sendform').prop("disabled", true);
+
+                    //Basic form validation for required fields
+                    var isError = false;
+                    $('input, textarea, select').removeClass('required');
+                    $('input, textarea, select').each(function() {
+                        if ($(this).prop('required') && $(this).val() == "") {
+                            $(this).addClass('required')
+                            isError = true;
+                        }
+                    })
+                    if (isError) {
+                        showBanner('Please fill in the required fields.', true);
+                        return;
+                    }
+                    var payload = new FormData();
+                    payload.append('ajaxEnabled', true);
+                    payload.append('firstName', $("input[name='firstName']").val());
+                    payload.append('lastName', $("input[name='lastName']").val());
+                    payload.append('email', $("input[name='email']").val());
+                    payload.append('category', $("select[name='category']").val());
+                    payload.append('caption1', $("textarea[name='caption1']").val());
+                    payload.append('caption2', $("textarea[name='caption2']").val());
+                    payload.append('caption3', $("textarea[name='caption3']").val());
+                    payload.append('image1', $('#imgUpload1')[0].files[0]);
+                    payload.append('image2', $('#imgUpload2')[0].files[0]);
+                    payload.append('image3', $('#imgUpload3')[0].files[0]);
+                    console.log(payload.get('image1'));
+                    console.log(payload.get('image2'));
+                    console.log(payload.get('image3'));
+                    console.log(payload.get('caption1'));
+                    console.log(payload.get('caption2'));
+                    console.log(payload.get('caption3'));
+                    $.ajax({
+                        url: "image-uploader.php",
+                        type: "POST",
+                        data: payload,
+                        cache: false,
+                        processData: false,
+                        contentType: false,
+                        context: this,
+                        success: function(response) {
+                            if (response.ok === true) {
+                                showBanner('Success! We received your submission.', false);
+                                // showBanner();
+                                $('#imgPreview1').attr('src', 'image-preview-placeholder.png');
+                                $('#imgPreview2').attr('src', 'image-preview-placeholder.png');
+                                $('#imgPreview3').attr('src', 'image-preview-placeholder.png');
+                                $('#caption1').val('');
+                                $('#caption2').val('');
+                                $('#caption3').val('');
+                                $('#imgUpload1').val('');
+                                $('#imgUpload2').val('');
+                                $('#imgUpload3').val('');
+                                payload = "";
+                            } 
+
+                            if (response.ok === false) {
+                                showBanner('Uh oh, it looks like we couldn\'t process this message. You can manually submit your message to jteoh@lohud.com', true);
+                              // showBanner();
+                            }
+                        }
+                    });
+                }
+            })
+
+
+            /***** FUNCTIONS *****/
+
+            //Show message on AJAX return
+            function showBanner(message, error) {
+                $('#sendform').prop("disabled", false);
+
+                if (error === false) {
+                    $('#form-banner').css('color', '#28BB28');
+                } else if (error === true) {
+                    $('#form-banner').css('color', '#BB283E');
+                }
+                $('#form-banner').html(message);
+                $('#form-banner').fadeIn().css("display", "inline-block");
+            }
+        })();
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+/admin/.htaccess
+/admin/.htpasswd
+/credentials.php
+/admin/appbackup.php
+/admin/appbackup2.php
+/admin/admin_njdb_sc.php
