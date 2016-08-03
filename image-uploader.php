@@ -32,19 +32,11 @@
 	$caption1 = substr($_POST['caption1'],0,1024);
 	$image1 = $_FILES['image1'];
 
-	if (isset($_POST['caption2'])){
-	}
+	isset($_FILES['image2']);
+	isset($_FILES['image3']);
+	isset($_POST['caption2']);
+	isset($_POST['caption3']);
 
-	if (isset($_POST['caption3'])){
-	}
-
-	if (isset($_POST['image2'])){
-
-	}
-
-	if (isset($_POST['image3'])){
-	}
-	
 
 	if ($image1['error'] != 0){
 		output($image1['error'], false);
@@ -90,96 +82,106 @@
 
 	};
 
-	$caption2 = substr($_POST['caption2'],0,1024);
-	$image2 = $_FILES['image2'];
-	if ($image2['error'] != 0){
-	    output($image2['error'], false);
-	} else {
-	    /***Get image info**/
-		$cleanName2 = trim($image2['name']);
-		if (strlen($cleanName2) > 10){
-			$cleanName2 = substr($cleanName2, 0, 9);
-		}
-		// $string2 = filter_var($cleanName2, FILTER_SANITIZE_STRING);
-		$imageInfo2 = pathinfo($image2['name']);
-		$filename2 = $timestamp . "." . strtolower($cleanName2) . "." . strtolower($imageInfo2['extension']);
-		// $filename2 = $timestamp . "." . strtolower($cleanName2) . "." . strtolower($imageInfo2['extension']);
+	if (!empty($_FILES['image2'])) {
+		$image2 = $_FILES['image2'];
+		$caption2 = substr($_POST['caption2'],0,1024);
+		if ($image2['error'] != 0){
+		    output($image2['error'], false);
+		} else {
+
+		    /***Get image info**/
+			$cleanName2 = trim($image2['name']);
+			if (strlen($cleanName2) > 10){
+				$cleanName2 = substr($cleanName2, 0, 9);
+			}
+			// $string2 = filter_var($cleanName2, FILTER_SANITIZE_STRING);
+			$imageInfo2 = pathinfo($image2['name']);
+			$filename2 = $timestamp . "." . strtolower($cleanName2) . "." . strtolower($imageInfo2['extension']);
+			// $filename2 = $timestamp . "." . strtolower($cleanName2) . "." . strtolower($imageInfo2['extension']);
 
 
-		/***Save entry to the database***/
+			/***Save entry to the database***/
 
-		//Connect to mysql DB
+			//Connect to mysql DB
 
-		// $db = mysql_connect($dbhost, $dbuser, $dbpass);
+			// $db = mysql_connect($dbhost, $dbuser, $dbpass);
 
 
-		$db2 = new PDO("mysql:host={$dbhost};dbname={$dbname};charset=utf8", $dbuser, $dbpass, array(PDO::ATTR_EMULATE_PREPARES => false, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+			$db2 = new PDO("mysql:host={$dbhost};dbname={$dbname};charset=utf8", $dbuser, $dbpass, array(PDO::ATTR_EMULATE_PREPARES => false, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 
-		//Insert new record
-		$stmt2 = $db2->prepare("INSERT INTO {$dbtable}(first_name,last_name,email,caption,category,file_name) VALUES(:first_name,:last_name,:email,:caption,:category,:file_name)");
-		$stmt2->execute(array(':first_name' => $_POST['firstName'], ':last_name' => $_POST['lastName'], ':email' => $_POST['email'], ':caption' => $_POST['caption2'], ':category' => $_POST['category'], ':file_name' => $filename2));
-		$affected_rows2 = $stmt2->rowCount();
+			//Insert new record
+			$stmt2 = $db2->prepare("INSERT INTO {$dbtable}(first_name,last_name,email,caption,category,file_name) VALUES(:first_name,:last_name,:email,:caption,:category,:file_name)");
+			$stmt2->execute(array(':first_name' => $_POST['firstName'], ':last_name' => $_POST['lastName'], ':email' => $_POST['email'], ':caption' => $_POST['caption2'], ':category' => $_POST['category'], ':file_name' => $filename2));
+			$affected_rows2 = $stmt2->rowCount();
 
-		// if ($affected_rows2 == 1){
-		    // Move the uploaded file into place
-		    
-		    move_uploaded_file($image2['tmp_name'], 'images/'. $filename2);
+			// if ($affected_rows2 == 1){
+			    // Move the uploaded file into place
+			    
+			    move_uploaded_file($image2['tmp_name'], 'images/'. $filename2);
 
-		    //Create a thumbnail
-		    // include('smart_resize.php');
-		    smart_resize_image('images/'. $filename2, null, 150 , 150 , true , 'images/th_' . $filename2, false, false, 80);
-		    // output("Success! We received your submission.", true);
-		// }
-		// else{
-		//     output("Could not save information", false);
-		// }    
+			    //Create a thumbnail
+			    // include('smart_resize.php');
+			    smart_resize_image('images/'. $filename2, null, 150 , 150 , true , 'images/th_' . $filename2, false, false, 80);
+			    // output("Success! We received your submission.", true);
+			// }
+			// else{
+			//     output("Could not save information", false);
+			// }    
 
-	};
+		};
+	}
+
+	if (!empty($_FILES['image3'])) {
+		$image3 = $_FILES['image3'];
+		$caption3 = substr($_POST['caption3'],0,1024);
+		if ($image3['error'] != 0){
+		    output($image3['error'], false);
+		} else {
+
+		    /***Get image info**/
+		    $cleanName3 = trim($image3['name']);
+		    if (strlen($cleanName3) > 10){
+		    	$cleanName3 = substr($cleanName3, 0, 9);
+		    }
+		    // $string3 = filter_var($cleanName3, FILTER_SANITIZE_STRING);
+		    $imageInfo3 = pathinfo($image3['name']);
+		    $filename3 = $timestamp . "." . strtolower($cleanName3) . "." . strtolower($imageInfo3['extension']);
+		    // $filename3 = $timestamp . "." . strtolower($cleanName3) . "." . strtolower($imageInfo3['extension']);
+
+		    /***Save entry to the database***/
+
+		    //Connect to mysql DB
+
+		    // $db = mysql_connect($dbhost, $dbuser, $dbpass);
+
+
+		    $db3 = new PDO("mysql:host={$dbhost};dbname={$dbname};charset=utf8", $dbuser, $dbpass, array(PDO::ATTR_EMULATE_PREPARES => false, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+
+		    //Insert new record
+		    $stmt3 = $db3->prepare("INSERT INTO {$dbtable}(first_name,last_name,email,caption,category,file_name) VALUES(:first_name,:last_name,:email,:caption,:category,:file_name)");
+		    $stmt3->execute(array(':first_name' => $_POST['firstName'], ':last_name' => $_POST['lastName'], ':email' => $_POST['email'], ':caption' => $_POST['caption3'], ':category' => $_POST['category'], ':file_name' => $filename3));
+		    $affected_rows3 = $stmt3->rowCount();
+
+		    // if ($affected_rows3 == 1){
+		        //Move the uploaded file into place
+		        
+		        move_uploaded_file($image3['tmp_name'], 'images/'. $filename3);
+
+		        //Create a thumbnail
+		        // include('smart_resize.php');
+		        smart_resize_image('images/'. $filename3, null, 150 , 150 , true , 'images/th_' . $filename3, false, false, 80);
+		        // output("Success! We received your submission.", true);
+		    // }
+		    // else{
+		    //     output("Could not save information", false);
+		    // }
+
+		};
+	}
 	
-	$caption3 = substr($_POST['caption3'],0,1024);
-	$image3 = $_FILES['image3'];
-	if ($image3['error'] != 0){
-	    output($image3['error'], false);
-	} else {
-	    /***Get image info**/
-	    $cleanName3 = trim($image3['name']);
-	    if (strlen($cleanName3) > 10){
-	    	$cleanName3 = substr($cleanName3, 0, 9);
-	    }
-	    // $string3 = filter_var($cleanName3, FILTER_SANITIZE_STRING);
-	    $imageInfo3 = pathinfo($image3['name']);
-	    $filename3 = $timestamp . "." . strtolower($cleanName3) . "." . strtolower($imageInfo3['extension']);
-	    // $filename3 = $timestamp . "." . strtolower($cleanName3) . "." . strtolower($imageInfo3['extension']);
 
-	    /***Save entry to the database***/
-
-	    //Connect to mysql DB
-
-	    // $db = mysql_connect($dbhost, $dbuser, $dbpass);
-
-
-	    $db3 = new PDO("mysql:host={$dbhost};dbname={$dbname};charset=utf8", $dbuser, $dbpass, array(PDO::ATTR_EMULATE_PREPARES => false, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-
-	    //Insert new record
-	    $stmt3 = $db3->prepare("INSERT INTO {$dbtable}(first_name,last_name,email,caption,category,file_name) VALUES(:first_name,:last_name,:email,:caption,:category,:file_name)");
-	    $stmt3->execute(array(':first_name' => $_POST['firstName'], ':last_name' => $_POST['lastName'], ':email' => $_POST['email'], ':caption' => $_POST['caption3'], ':category' => $_POST['category'], ':file_name' => $filename3));
-	    $affected_rows3 = $stmt3->rowCount();
-
-	    // if ($affected_rows3 == 1){
-	        //Move the uploaded file into place
-	        
-	        move_uploaded_file($image3['tmp_name'], 'images/'. $filename3);
-
-	        //Create a thumbnail
-	        // include('smart_resize.php');
-	        smart_resize_image('images/'. $filename3, null, 150 , 150 , true , 'images/th_' . $filename3, false, false, 80);
-	        // output("Success! We received your submission.", true);
-	    // }
-	    // else{
-	    //     output("Could not save information", false);
-	    // }
-
-	};
+	
+	
 
 	output("Success! We received your submission.", true);
 

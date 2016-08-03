@@ -74,11 +74,12 @@
 
 	<main ng-controller="main">
 	<table class="table table-striped table-hover">
-		<tr><th>ID</th><th>First</th><th>Last</th><th>Email</th><th>Caption</th><th>Timestamp</th><th>Preview</th><th>Action</th></tr>
+		<tr><th>ID</th><th>First</th><th>Last</th><th>Category</th><th>Email</th><th>Caption</th><th>Timestamp</th><th>Preview</th><th>Action</th></tr>
 		<tr ng-repeat="row in listData">
 			<td>{{row.id}}</td>
 			<td>{{row.first_name}}</td>
 			<td>{{row.last_name}}</td>
+			<td>{{row.category}}</td>
 			<td>{{row.email}}</td>
 			<td>{{row.caption}}</td>
 			<td>{{row.time_stamp}}</td>
